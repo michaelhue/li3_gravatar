@@ -22,9 +22,9 @@ class GravatarTest extends \lithium\test\Unit {
 	
 	public function testImageWithoutOptions() {
 		$result = $this->helper->image('mail@example.org');
-		$expected = array(
-			'img' => array('src' => 'http://gravatar.com/avatar/5b9c2b225b5c4ff91ffe849209153ecc?d=404&s=80&r=g', 'alt' => '')
-		);
+		$expected = array('img' => array(
+			'src' => 'http://gravatar.com/avatar/5b9c2b225b5c4ff91ffe849209153ecc?d=404&s=80&r=g', 'alt' => ''
+		));
 		$this->assertTags($result, $expected);
 		
 		$result = $this->helper->image('MAIL@EXAMPLE.ORG');
@@ -33,30 +33,29 @@ class GravatarTest extends \lithium\test\Unit {
 	
 	public function testImageWithOptions() {
 		$result = $this->helper->image('mail@example.org', array('size' => 40));
-		$expected = array(
-			'img' => array('src' => 'http://gravatar.com/avatar/5b9c2b225b5c4ff91ffe849209153ecc?d=404&s=40&r=g', 'alt' => '')
-		);
+		$expected = array('img' => array(
+			'src' => 'http://gravatar.com/avatar/5b9c2b225b5c4ff91ffe849209153ecc?d=404&s=40&r=g', 'alt' => ''
+		));
 		$this->assertTags($result, $expected);
 		
 		$result = $this->helper->image('mail@example.org', array('default' => 'identicon'));
-		$expected = array(
-			'img' => array('src' => 'http://gravatar.com/avatar/5b9c2b225b5c4ff91ffe849209153ecc?d=identicon&s=80&r=g', 'alt' => '')
-		);
+		$expected = array('img' => array(
+			'src' => 'http://gravatar.com/avatar/5b9c2b225b5c4ff91ffe849209153ecc?d=identicon&s=80&r=g', 'alt' => ''
+		));
 		$this->assertTags($result, $expected);
 		
 		$result = $this->helper->image('mail@example.org', array('default' => 'http://example.org/default.jpg'));
-		$expected = array(
-			'img' => array('src' => 'http://gravatar.com/avatar/5b9c2b225b5c4ff91ffe849209153ecc?d=http%3A%2F%2Fexample.org%2Fdefault.jpg&s=80&r=g', 'alt' => '')
-		);
+		$expected = array('img' => array(
+			'src' => 'http://gravatar.com/avatar/5b9c2b225b5c4ff91ffe849209153ecc?d=http%3A%2F%2Fexample.org%2Fdefault.jpg&s=80&r=g', 
+			'alt' => ''
+		));
 		$this->assertTags($result, $expected);
 		
 		$result = $this->helper->image('mail@example.org', array('alt' => 'Gravatar', 'class' => 'gravatar'));
-		$expected = array(
-			'img' => array(
-				'src' => 'http://gravatar.com/avatar/5b9c2b225b5c4ff91ffe849209153ecc?d=404&s=80&r=g', 
-				'alt' => 'Gravatar', 'class' => 'gravatar'
-			)
-		);
+		$expected = array('img' => array(
+			'src' => 'http://gravatar.com/avatar/5b9c2b225b5c4ff91ffe849209153ecc?d=404&s=80&r=g', 
+			'alt' => 'Gravatar', 'class' => 'gravatar'
+		));
 		$this->assertTags($result, $expected);
 	}
 	
