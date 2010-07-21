@@ -19,7 +19,7 @@ class Gravatar extends \lithium\template\Helper {
 	 * @var array
 	 */
 	protected $_strings = array(
-		'image' => '<img src="{:url}"{:options} />',
+		'image' => '<img src="{:url}"{:options} />'
 	);
 
 	/**
@@ -29,8 +29,9 @@ class Gravatar extends \lithium\template\Helper {
 	 * @param array [$options] Optional options. May be any HTML attribute for the image tag and 
 	 * 				the following options:
 	 *              - default: The default image that will be served if there is no Gravatar
-	 *				           associated with `$email`. This can be an URL to a default image,
-	 *				           `mm`, `identicon`, `monsterid`, `wavatar` or `404`.
+	 *				           associated with `$email`. This can be a full URL to a default 
+	 *				           image, an absolute path, `mm`, `identicon`, `monsterid`, `wavatar` 
+	 * 				           or `404` (default).
 	 *              - size: Size in pixels of the Gravatar. Defaults to `80`.
 	 *              - rating: The required Gravatar rating. This can be `g`, `pg`, `r` or `x`.
 	 *				          If the Gravatar does not meet the minimum rating the default
@@ -45,6 +46,14 @@ class Gravatar extends \lithium\template\Helper {
 			'alt' => ''
 		);
 		$options += $defaults;
+		$request = $this->_context->request();
+		
+		$defaultValues = array(404, 'mm', 'identicon', 'monsterid', 'wavatar');
+		if (!in_array($options['default'], $defaultValues) && strpos($options['default'], '://') === false) {
+			$host = $request->env('HTTP_HOST');
+			$scheme = $request->env('HTTPS') ? 'https://' : 'http://';
+			$options['default'] = $scheme . $host . $options['default'];
+		}
 		
 		$email = strtolower(trim($email));
 		$hash  = md5($email);

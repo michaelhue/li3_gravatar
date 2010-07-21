@@ -9,6 +9,7 @@
 namespace li3_gravatar\tests\cases\extensions\helper;
 
 use \li3_gravatar\extensions\helper\Gravatar;
+use \lithium\tests\mocks\action\MockControllerRequest;
 use \lithium\tests\mocks\template\helper\MockHtmlRenderer;
 
 class GravatarTest extends \lithium\test\Unit {
@@ -16,7 +17,8 @@ class GravatarTest extends \lithium\test\Unit {
 	public $helper = null;
 	
 	public function setUp() {
-		$this->context = new MockHtmlRenderer();
+		$this->request = new MockControllerRequest();
+		$this->context = new MockHtmlRenderer(array('request' => $this->request));
 		$this->helper = new Gravatar(array('context' => &$this->context));
 	}
 	
@@ -48,6 +50,16 @@ class GravatarTest extends \lithium\test\Unit {
 		$expected = array('img' => array(
 			'src' => 'http://gravatar.com/avatar/5b9c2b225b5c4ff91ffe849209153ecc?d=http%3A%2F%2Fexample.org%2Fdefault.jpg&s=80&r=g', 
 			'alt' => ''
+		));
+		$this->assertTags($result, $expected);
+		
+		$host = $this->request->env('HTTP_HOST');
+		$scheme = $this->request->env('HTTPS') ? 'https://' : 'http://';
+		$default = urlencode("{$scheme}{$host}/default.jpg");
+		
+		$result = $this->helper->image('mail@example.org', array('default' => '/default.jpg'));
+		$expected = array('img' => array(
+			'src' => "http://gravatar.com/avatar/5b9c2b225b5c4ff91ffe849209153ecc?d={$default}&s=80&r=g", 'alt' => ''
 		));
 		$this->assertTags($result, $expected);
 		
