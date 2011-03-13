@@ -19,7 +19,7 @@ class Gravatar extends \lithium\template\Helper {
 	 * @var array
 	 */
 	protected $_strings = array(
-		'image' => '<img src="{:url}"{:options} />'
+		'gravatar_image' => '<img src="{:url}"{:options} />'
 	);
 
 	/**
@@ -64,7 +64,7 @@ class Gravatar extends \lithium\template\Helper {
 		$url .= "&r={$options['rating']}";
 		unset($options['default'], $options['size'], $options['rating']);
 
-		return $this->_render(__METHOD__, 'image', compact('url', 'options'));
+		return $this->_render(__METHOD__, 'gravatar_image', compact('url', 'options'));
 	}
 
 }
