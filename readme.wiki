@@ -34,7 +34,7 @@ The `GravatarProfiles` model allows you to fetch public profile information from
 
 {{{
 use li3_gravatar\models\GravatarProfiles;
-$profile = GravatarProfiles::find('mail@example.org');
+$profile = GravatarProfiles::fetch('mail@example.org');
 }}}
 
 For more information on Gravatar profiles please refer to http://gravatar.com/site/implement/profiles/.

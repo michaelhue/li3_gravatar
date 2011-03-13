@@ -24,11 +24,11 @@ class GravatarProfilesTest extends \lithium\test\Unit {
 		$this->assertEqual($expected, $result);
 	}
 	
-	public function testFind() {
-		$result = MockGravatarProfiles::find('invalid@example.org');
+	public function testFetch() {
+		$result = MockGravatarProfiles::fetch('invalid@example.org');
 		$this->assertFalse($result);
 	
-		$result = MockGravatarProfiles::find('john@example.org');
+		$result = MockGravatarProfiles::fetch('john@example.org');
 		$this->assertTrue($result instanceof \lithium\data\Entity);
 		$this->assertEqual('123', $result->id);
 		$this->assertEqual('08aff750c4586c34375a0ebd987c1a7e', $result->hash);

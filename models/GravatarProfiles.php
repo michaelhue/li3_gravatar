@@ -18,7 +18,7 @@ namespace li3_gravatar\models;
  * Example:
  * 
  * {{{
- * $profile = GravatarProfiles::find('john@example.org');
+ * $profile = GravatarProfiles::fetch('john@example.org');
  * }}}
  *
  * The model uses Lithium's `Service` class to make requests to Gravatar. You can configure the class, 
@@ -89,7 +89,7 @@ class GravatarProfiles extends \lithium\data\Model {
 	 * @return object Returns the profile as an `Entity` object or `false` if the
 	 *     request failed.
 	 */
-	public static function find($email) {
+	public static function fetch($email) {
 		$hash = static::hash($email);
 
 		if ($response = static::_request($hash)) {
