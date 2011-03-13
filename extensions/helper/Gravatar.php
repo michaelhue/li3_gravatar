@@ -9,7 +9,7 @@
 namespace li3_gravatar\extensions\helper;
 
 /**
- * Helper to output Gravatars.
+ * This helper allows you to render Gravatars using an email address and a set of options.
  */
 class Gravatar extends \lithium\template\Helper {
 
