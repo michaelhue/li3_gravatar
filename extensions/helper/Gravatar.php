@@ -51,7 +51,12 @@ class Gravatar extends \lithium\template\Helper {
 			$options['default'] = $scheme . $host . $options['default'];
 		}
 		
-		$url  = "http://gravatar.com/avatar/{$hash}";
+		if ($request->env('HTTPS')) {
+			$url = 'https://secure.gravatar.com';
+		} else {
+			$url = 'http://gravatar.com';
+		}
+		$url .= "/avatar/{$hash}";
 		$url .= "?d=" . urlencode($options['default']);
 		$url .= "&s={$options['size']}";
 		$url .= "&r={$options['rating']}";

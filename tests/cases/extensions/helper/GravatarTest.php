@@ -15,6 +15,7 @@ use lithium\tests\mocks\template\helper\MockHtmlRenderer;
 class GravatarTest extends \lithium\test\Unit {
 	
 	public function setUp() {
+		$_ENV['HTTPS'] = 'off';
 		$this->request = new MockControllerRequest();
 		$this->context = new MockHtmlRenderer(array('request' => $this->request));
 		$this->helper = new Gravatar(array('context' => &$this->context));
@@ -33,6 +34,21 @@ class GravatarTest extends \lithium\test\Unit {
 		$this->assertEqual($expected, $result);
 		
 		$result = $this->helper->url(' george@example.org ');
+		$this->assertEqual($expected, $result);
+	}
+	
+	public function testUrlSslWithoutOptions() {
+		$_ENV['HTTPS'] = 'on';
+		$this->request = new MockControllerRequest();
+		$this->context = new MockHtmlRenderer(array('request' => $this->request));
+		$this->helper = new Gravatar(array('context' => &$this->context));
+	
+		$expected = 'https://secure.gravatar.com/avatar/08aff750c4586c34375a0ebd987c1a7e?d=404&s=80&r=g';
+		$result = $this->helper->url('john@example.org');
+		$this->assertEqual($expected, $result);
+		
+		$expected = 'https://secure.gravatar.com/avatar/978a05c7e2e60f547991b0ee47876553?d=404&s=80&r=g';
+		$result = $this->helper->url('george@example.org');
 		$this->assertEqual($expected, $result);
 	}
 	
