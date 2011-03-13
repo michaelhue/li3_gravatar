@@ -1,4 +1,10 @@
 <?php
+/**
+ * li3_gravatar plugin for Lithium: the most rad php framework.
+ *
+ * @copyright     Copyright 2011, Michael Hüneburg
+ * @license       http://opensource.org/licenses/bsd-license.php The BSD License
+ */
 
 namespace li3_gravatar\tests\mocks\data;
 
