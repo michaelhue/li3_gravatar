@@ -67,7 +67,7 @@ class Gravatar extends \lithium\template\Helper {
 	/**
 	 * Renders the Gravatar for `'$email'`.
 	 *
-	 * @see li3_gravatar\extensions\helpers\Gravatar::url()
+	 * @see li3_gravatar\extensions\helper\Gravatar::url()
 	 * @param string $email  
 	 * @param array $options Optional options.
 	 * @return string Returns an image tag displaying the Gravatar.
