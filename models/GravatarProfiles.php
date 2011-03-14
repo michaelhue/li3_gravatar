@@ -67,8 +67,8 @@ class GravatarProfiles extends \lithium\data\Model {
 			'service' => array('host' => 'en.gravatar.com')
 		);
 		$config += $defaults;
-	
-		static::$_service = new static::$_classes['service']($config['service']);
+
+		static::_instance('service', $config['service']);
 		parent::config($config);
 	}
 	
