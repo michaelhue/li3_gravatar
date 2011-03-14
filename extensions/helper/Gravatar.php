@@ -25,7 +25,7 @@ class Gravatar extends \lithium\template\Helper {
 	/**
 	 * Generates an URL to the Gravatar for `'$email'`.
 	 *
-	 * @link http://gravatar.com/site/implement/images/ Description of the Gravatar options
+	 * @link http://gravatar.com/site/implement/images/ Gravatar: Image requests
 	 * @param string $email
 	 * @param array $options Optional options. Valid options are:
 	 *     - `'default'`: The fallback image that will be provided if there is no Gravatar associated 
