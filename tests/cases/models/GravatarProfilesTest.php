@@ -9,6 +9,7 @@
 namespace li3_gravatar\tests\cases\models;
 
 use li3_gravatar\tests\mocks\data\MockGravatarProfiles;
+use li3_gravatar\models\GravatarProfiles;
 
 class GravatarProfilesTest extends \lithium\test\Unit {
 
@@ -32,6 +33,12 @@ class GravatarProfilesTest extends \lithium\test\Unit {
 		$this->assertTrue($result instanceof \lithium\data\Entity);
 		$this->assertEqual('123', $result->id);
 		$this->assertEqual('08aff750c4586c34375a0ebd987c1a7e', $result->hash);
+	
+		GravatarProfiles::config(array(
+			'service' => array('socket' => 'lithium\tests\mocks\net\http\MockSocket')
+		));
+		$result = GravatarProfiles::fetch('invalid@example.org');
+		$this->assertFalse($result);
 	}
 
 }

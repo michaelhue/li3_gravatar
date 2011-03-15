@@ -34,8 +34,6 @@ namespace li3_gravatar\models;
  * @see lithium\net\http\Service
  */
 class GravatarProfiles extends \lithium\data\Model {
-
-	protected static $_service;
 	
 	/**
 	 * Class dependencies.
@@ -66,9 +64,7 @@ class GravatarProfiles extends \lithium\data\Model {
 		$defaults = array(
 			'service' => array('host' => 'en.gravatar.com')
 		);
-		$config += $defaults;
-
-		static::_instance('service', $config['service']);
+		$config = array_merge_recursive($defaults,  $config);
 		parent::config($config);
 	}
 	
@@ -95,7 +91,7 @@ class GravatarProfiles extends \lithium\data\Model {
 		if ($response = static::_request($hash)) {
 			$data = unserialize($response);
 		}
-		if ($data && is_array($data)) {
+		if (!empty($data) && is_array($data)) {
 			return static::create($data['entry'][0]);
 		}
 		return false;
@@ -108,7 +104,8 @@ class GravatarProfiles extends \lithium\data\Model {
 	 * @return object The response object.
 	 */
 	protected static function _request($hash) {
-		return static::$_service->post("{$hash}.php");
+		$self = static::_object();
+		return static::_instance('service', $self->meta('service'))->post("{$hash}.php");
 	}
 
 }
