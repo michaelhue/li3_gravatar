@@ -9,7 +9,9 @@
 namespace li3_gravatar\extensions\helper;
 
 /**
- * This helper allows you to render Gravatars using an email address and a set of options.
+ * This helper allows you to make Gravatar image requests.
+ *
+ * @link http://gravatar.com/site/implement/images/ Gravatar: Image requests
  */
 class Gravatar extends \lithium\template\Helper {
 
@@ -25,7 +27,6 @@ class Gravatar extends \lithium\template\Helper {
 	/**
 	 * Generates an URL to the Gravatar for `'$email'`.
 	 *
-	 * @link http://gravatar.com/site/implement/images/ Gravatar: Image requests
 	 * @param string $email
 	 * @param array $options Optional options. Valid options are:
 	 *     - `'default'`: The fallback image that will be provided if there is no Gravatar associated 
