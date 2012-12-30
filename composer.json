@@ -1,0 +1,21 @@
+{
+    "name": "michaelhue/li3_gravatar",
+    "description": "The Lithium Gravatar plugin (Li3 Gravatar) allows you to interact with Gravatar (http://gravatar.com) images and profiles. It provides a helper for displaying Gravatars and a model for requesting user profiles from Gravatar.",
+    "type": "lithium-library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Hüneburg",
+            "email": "hello@michaelhue.com",
+            "homepage": "http://michaelhue.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "composer/installers": "*"
+    },
+    "suggest": {
+        "UnionOfRAD/lithium": "Lithium is required for this plugin."
+    },
+    "minimum-stability": "dev"
+}
