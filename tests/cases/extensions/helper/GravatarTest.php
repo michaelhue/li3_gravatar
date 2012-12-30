@@ -79,6 +79,14 @@ class GravatarTest extends \lithium\test\Unit {
 		$result = $this->helper->url('john@example.org', array('default' => 'wavatar'));
 		$this->assertEqual($expected, $result);
 
+		$expected = 'http://gravatar.com/avatar/08aff750c4586c34375a0ebd987c1a7e?d=retro&s=80&r=g';
+		$result = $this->helper->url('john@example.org', array('default' => 'retro'));
+		$this->assertEqual($expected, $result);
+
+		$expected = 'http://gravatar.com/avatar/08aff750c4586c34375a0ebd987c1a7e?d=blank&s=80&r=g';
+		$result = $this->helper->url('john@example.org', array('default' => 'blank'));
+		$this->assertEqual($expected, $result);
+
 		$expected = 'http://gravatar.com/avatar/08aff750c4586c34375a0ebd987c1a7e?d=http%3A%2F%2Fexample.org%2Favatar.png&s=80&r=g';
 		$result = $this->helper->url('john@example.org', array('default' => 'http://example.org/avatar.png'));
 		$this->assertEqual($expected, $result);

@@ -31,7 +31,7 @@ class Gravatar extends \lithium\template\Helper {
 	 * @param array $options Optional options. Valid options are:
 	 *     - `'default'`: Optional fallback image that will be provided if there is no Gravatar associated
 	 *     with `'$email'`. This may be a full URL, an absolute path, `'mm'`, `'identicon'`,
-	 *     `'monsterid'`, `'wavatar'` or `'404'`.
+	 *     `'monsterid'`, `'wavatar'`, `'retro'`, `'blank'` or `'404'`.
 	 *     - `'size'`: Size of the image in pixels. Defaults to `'80'`.
 	 *     - `'rating'`: Required minimum rating of the Gravatar. This may be `'g'`, `'pg'`, `'r'` or
 	 *     `'x'`. If the Gravatar does not meet the rating the `'default'` option will be returned.
@@ -43,7 +43,7 @@ class Gravatar extends \lithium\template\Helper {
 		$options += $defaults;
 
 		$request = $this->_context->request();
-		$defaultValues = array(null, 404, 'mm', 'identicon', 'monsterid', 'wavatar');
+		$defaultValues = array(null, 404, 'mm', 'identicon', 'monsterid', 'wavatar', 'retro', 'blank');
 		$hash = md5(strtolower(trim($email)));
 
 		if (!in_array($options['default'], $defaultValues) && strpos($options['default'], '://') === false) {
