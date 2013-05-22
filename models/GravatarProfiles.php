@@ -40,7 +40,7 @@ class GravatarProfiles extends \lithium\data\Model {
 	 *
 	 * @var array
 	 */
-	protected static $_classes = array(
+	protected $_classes = array(
 		'service' => 'lithium\net\http\Service'
 	);
 	
@@ -50,7 +50,8 @@ class GravatarProfiles extends \lithium\data\Model {
 	 * @var array
 	 */
 	protected $_meta = array(
-		'connection' => false
+		'connection' => false,
+		'service' => array()
 	);
 	
 	/**
@@ -62,7 +63,9 @@ class GravatarProfiles extends \lithium\data\Model {
 	 */
 	public static function config(array $config = array()) {
 		$defaults = array(
-			'service' => array('host' => 'en.gravatar.com')
+			'meta' => array(
+				'service' => array('host' => 'en.gravatar.com')
+			)
 		);
 		$config = array_merge_recursive($defaults,  $config);
 		parent::config($config);
