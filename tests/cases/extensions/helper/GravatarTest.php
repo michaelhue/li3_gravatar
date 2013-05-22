@@ -10,14 +10,14 @@ namespace li3_gravatar\tests\cases\extensions\helper;
 
 use li3_gravatar\extensions\helper\Gravatar;
 use lithium\tests\mocks\action\MockControllerRequest;
-use lithium\tests\mocks\template\helper\MockHtmlRenderer;
+use lithium\tests\mocks\template\MockRenderer;
 
 class GravatarTest extends \lithium\test\Unit {
 
 	public function setUp() {
 		$_ENV['HTTPS'] = 'off';
 		$this->request = new MockControllerRequest();
-		$this->context = new MockHtmlRenderer(array('request' => $this->request));
+		$this->context = new MockRenderer(array('request' => $this->request));
 		$this->helper = new Gravatar(array('context' => &$this->context));
 	}
 
@@ -40,7 +40,7 @@ class GravatarTest extends \lithium\test\Unit {
 	public function testUrlSslWithoutOptions() {
 		$_ENV['HTTPS'] = 'on';
 		$this->request = new MockControllerRequest();
-		$this->context = new MockHtmlRenderer(array('request' => $this->request));
+		$this->context = new MockRenderer(array('request' => $this->request));
 		$this->helper = new Gravatar(array('context' => &$this->context));
 
 		$expected = 'https://secure.gravatar.com/avatar/08aff750c4586c34375a0ebd987c1a7e?s=80&r=g';
